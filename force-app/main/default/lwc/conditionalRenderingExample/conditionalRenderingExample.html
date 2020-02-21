@@ -1,0 +1,26 @@
+<template>
+<div style="background-color: aqua;">
+<lightning-input type = "checkbox" label = "Show Div" onchange={showDivHandler}></lightning-input>
+<template if:true = {displayDiv}>
+<div>Hi I am checked div</div>
+</template>
+
+<template if:false = {displayDiv}>
+<div>Hi I am Un checked div</div>
+</template>
+
+<h1>For each iteration</h1>
+<lightning-input type="checkbox" label = "show city" onchange={showCity}></lightning-input>
+<template if:true = {displayCity}>
+<template for:each={cityList} for:item="city">
+    <p key={city}>{city}</p>
+</template>
+
+</template>
+<h1>Iterative Example</h1>
+<template iterator:it= {cityList}>
+    <p key={it.value}>{it.value}</p>
+</template>
+</div>   
+
+</template>

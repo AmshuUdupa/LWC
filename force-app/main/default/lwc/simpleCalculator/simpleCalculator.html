@@ -1,0 +1,62 @@
+<template>
+    <lightning-card title="Simple Calculator" icon-name="standard:formula">
+
+        <lightning-layout multiple-rows>
+
+            <lightning-layout-item size="12" padding="around:medium">
+                <lightning-input type="number" name="firstNumber" onchange={numberChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around:medium">
+                <lightning-input type="number" name="secondNumber" onchange={numberChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around:medium">
+                <lightning-button-group>
+                    <lightning-button label="Add" icon-name="utility:add" icon-position="right"
+                        onclick={operationHandler}></lightning-button>
+                    <lightning-button label="Subtract" icon-name="utility:dash" icon-position="right"
+                        onclick={operationHandler}></lightning-button>
+                    <lightning-button label="Multiply" icon-name="utility:close" icon-position="right"
+                        onclick={operationHandler}></lightning-button>
+                    <lightning-button label="Divide" icon-name="utility:magicwand" icon-position="right"
+                        onclick={operationHandler}></lightning-button>
+                </lightning-button-group>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around:medium">
+                <lightning-formatted-text value={finalResult}> </lightning-formatted-text>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around:medium">
+
+                <lightning-input type="checkbox" label="Show History" onchange={showHistory}></lightning-input>
+                <template if:true={historyFlag}>
+                    <!-- <lightning-formatted-text value={trackHistory}> </lightning-formatted-text> -->
+
+                    <ul>
+                        <template iterator:it={trackHistory}>
+                            <li key={it.value}>
+                                <div if:true={it.first} class="slds-border_top"></div>
+                                <lightning-formatted-text value={it.value}> </lightning-formatted-text>
+                                <div if:true={it.last} class="slds-border_bottom"></div>
+                            </li>
+                        </template>
+                    </ul>
+
+                </template>
+
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around:medium">
+
+                <lightning-button label="Clear History" icon-name="utility:emoji" icon-position="right"
+                    onclick={clearhistory}></lightning-button>
+
+            </lightning-layout-item>
+
+        </lightning-layout>
+
+    </lightning-card>
+
+</template>
