@@ -21,7 +21,11 @@ export default class SimpleCalculator extends LightningElement {
     operationHandler(event) {
         const firstN = parseInt(this.firstNumber);
         const secondN = parseInt(this.secondNumber);
-
+        /*if (firstN===NaN || secondN ===NaN)
+        {
+            window.alert("Please enter a number");
+        }
+        */
         const operationName = event.target.label;
         console.log("operationName>>" + operationName);
         if (operationName === "Add") {
