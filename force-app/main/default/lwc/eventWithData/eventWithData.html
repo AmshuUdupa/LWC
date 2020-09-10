@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="event data" icon-name="custom:custom9">
+        <lightning-layout class="slds-m-around_medium">
+            <lightning-layout-item>
+                <template if:true={listIsNotEmpty}>
+                    <template for:each={contacts.data} for:item="contact">
+                        <c-contact-list-item key={contact.id} contact={contact} onselected={ContactSelected}></c-contact-list-item>
+                    </template>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item class="slds-m-left_medium">
+                <template if:true = {selectedContent}>
+                    <p>Name:{selectedContact.name}</p>
+                    <p>Title:{selectedContact.title}</p>
+                    <p><lightning-formatted-phone value={selectedContact.phone}></lightning-formatted-phone></p>
+
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>
