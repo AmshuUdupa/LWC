@@ -5,11 +5,9 @@ export default class ContactListItem extends LightningElement {
 
 selectHandler(event) {
     event.preventDefault();
-
-    const selectedEvent = new customEvent('selected', {detail: this.contact.id});
+    console.log("list item>>"+JSON.stringify(this.contact));
+    const selectedEvent = new customEvent('selected', {detail: this.contact.Id});
+    console.log("selectedEvent>>"+selectedEvent);
     this.dispatchEvent(selectedEvent);
-
 }
-
-
 }
