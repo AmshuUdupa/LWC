@@ -1,18 +1,20 @@
 import { LightningElement, track, api } from 'lwc';
 
-import resourceContainer from '@salesforce/resourceUrl/Resource';
+//import resourceContainer from '@salesforce/resourceUrl/Resource';
 //import D3Funnel from '@salesforce/resourceUrl/D3Funnel';
-import D3F from '@salesforce/resourceUrl/D3Funnel';
+//import D3F from '@salesforce/resourceUrl/D3F';
+import D3Fnew from '@salesforce/resourceUrl/D3FNew';
 
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
 
 export default class Graphs extends LightningElement {
- 
+    chart;
+    steppedChart;
 chartjsInitialized = false;
 
 /* generate the URL for the JavaScript*/
-charts = resourceContainer + '/d3-funnel.min.js';
-charts2 = resourceContainer + '/d3.v4.min.js';
+//charts = resourceContainer + '/d3-funnel.min.js';
+//charts2 = resourceContainer + '/d3.v4.min.js';
 //charts3 = D3Funnel + '/d3-funnel.min.js';
 
 
@@ -23,32 +25,31 @@ console.log("Rendered call");
 if (this.chartjsInitialized) {
     return;
 }
-
+//console.log('D3F>>'+D3F);
 this.chartjsInitialized = true;
-loadScript(this, this.charts2);
+//, loadScript(this, `${resourceContainer}/d3-funnel.min.js`)
 
-loadScript(this, this.charts);
+Promise.all([loadScript(this, D3Fnew+'/d3.v3.min.js'),loadScript(this, D3Fnew+'/D3Funnel.js')])
+    .then( (message) => {
+                    console.log("call me>>"+message);    
+                    this.generateSteppedChart();
+                })
+    .catch( (error) => {
+                    this.error = error;
+                   
+                    console.log('Error Occured ', error);
+                    setTimeout(()=>{ alert("Hello"); }, 3000);
+                    this.generateSteppedChart();
+                }); 
 
-console.log('charts3>>',charts);
-
-this.generateSteppedChart();
-
-/*    Promise.all([
-        loadScript(this, resourceContainer + '/d3-funnel.min.js'),
-        loadScript(this, resourceContainer + '/d3.v4.min.js')
-    ]).then(() => {
-    console.log("call ne");    
-    this.generateSteppedChart();
-})
-.catch(error => {
-    this.error = error;
-    console.log('Error Occured ', error);
-}); */
 }
+
+
 errorCallback(error, stack) {
 this.error = error;
 console.log('call back error this.error ', this.error);
 }
+
 generateSteppedChart(){
 console.log("in stepped graph");
 var data =    
@@ -72,13 +73,20 @@ var options =
 const ctx = this.template
                     .querySelector('canvas.stepped')
                     .getContext('2d');
+
+const ctx2 = this.template
+                    .querySelector('stepped');
+                    
+
 console.log("ctx>>"+ctx) ;
+console.log("ctx2>>"+ctx2) ;
 
-chart = new D3Funnel(ctx);
 
-console.log("chart>>>"+chart);
+this.chart = new D3Funnel(data, options);
+chart.draw(ctx);
+console.log("chart>>>"+this.chart);
 
-chart.draw(data, options);  
+//chart.draw(data, options);  
 
 //this.steppedChart = new window.Chart(data, options);  
 }
