@@ -23,6 +23,7 @@
 
         var dchart = new D3Funnel(data, options);
         dchart.draw(charts);
+        JSON.parse
 
     }
 })
