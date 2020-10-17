@@ -1,7 +1,12 @@
 <template>
-<div class="slds-p-around_medium lgc-bg">
-    <lightning-tile label={meetingRoomInfo.roomName}  >
+    <div class="slds-p-around_medium lgc-bg">
+        <slot name="roomInfo"> </slot>
+        <slot></slot> 
+        
+        <!-- commenting for slots-->
+        <!--<lightning-tile label={meetingRoomInfo.roomName}  >
         <p class="slds-truncate" title={meetingRoomInfo.roomCapacity}>Room Capacity : {meetingRoomInfo.roomCapacity}</p>
-    </lightning-tile>
-</div>
+    </lightning-tile> -->
+
+    </div>
 </template>

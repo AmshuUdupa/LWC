@@ -20,6 +20,12 @@
             ],
             "c/simpleCalculator": [
                 "simpleCalculator/simpleCalculator.js"
+            ],
+            "c/publicMethodChild": [
+                "publicMethodChild/publicMethodChild.js"
+            ],
+            "c/publicMethodParent": [
+                "publicMethodParent/publicMethodParent.js"
             ]
         }
     },
@@ -30,6 +36,11 @@
     "typeAcquisition": {
         "include": [
             "jest"
+        ]
+    },
+    "paths": {
+        "c/*": [
+            "*"
         ]
     }
 }

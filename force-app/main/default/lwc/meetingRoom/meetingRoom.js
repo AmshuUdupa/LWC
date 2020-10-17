@@ -4,5 +4,5 @@ import {
 } from 'lwc';
 
 export default class MeetingRoom extends LightningElement {
-    @api meetingRoomInfo;
+ //   @api meetingRoomInfo;
 }
