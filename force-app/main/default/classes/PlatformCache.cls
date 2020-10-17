@@ -53,7 +53,6 @@ public inherited sharing class PlatformCache {
             return (String) defPartition.get(key);
         } 
 
-
         return 'cache miss';
         
        
