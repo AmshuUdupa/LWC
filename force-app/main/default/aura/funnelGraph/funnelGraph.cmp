@@ -1,0 +1,5 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <ltng:require scripts="{!join(',',$Resource.D3,$Resource.D3FNew)}" afterScriptsLoaded ="{!c.myAction}"/>
+    Funnel
+    <div  aura:id = "chartId" style="background:white" ></div>
+</aura:component>	
