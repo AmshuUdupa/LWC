@@ -27,4 +27,21 @@
       </template>
     </ul>
   </lightning-card>
+  <lightning-card title="Field set" icon-name="custom:custom13">
+    <lightning-input
+      name="firstname"
+      label="First name"
+      onchange={handleChange}
+    ></lightning-input>
+    <lightning-input
+      name="lastname"
+      label="Last name"
+      onchange={handleChange}
+    ></lightning-input>
+    <p class="slds-m-top_medium">Uppercase Name: {changeUpperCase}</p>
+    <p class="slds-m-top_medium">full Name: {fullName.firstName} : {fullName.lastName}</p>
+  </lightning-card>
+  <p>date : {x}</p>
+  <button onclick={inIt}>init</button>
+  <button onclick={setDate}>setDate</button>
 </template>
